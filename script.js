@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+app.set("view engine", "ejs");
 app.use(function (req, res, next) {
   console.log("Middleware Hello world");
   next();
@@ -15,7 +15,7 @@ app.get("/", function (req, res) {
 });
 app.get("/abc", function (req, res) {
   console.log("get 1 ");
-  res.send("HEllo worl abc");
+  res.render("index", { name: "Nameer" });
 });
 app.get("/profile/:username", (req, res) => {
   res.send(`Hello from ${req.params.username}`);
