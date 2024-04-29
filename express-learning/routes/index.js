@@ -42,4 +42,17 @@ router.get("/delete", async (req, res) => {
   res.send(users);
 });
 
+router.get("/createCookie", async function (req, res) {
+  res.cookie("age", 25);
+  res.send("COOKIE CREATED");
+});
+router.get("/getCookie", async function (req, res) {
+  var age = req.cookies.age;
+  console.log(age);
+  res.send("COOKIE FETCHED");
+});
+router.get("/deleteCookie", async function (req, res) {
+  res.clearCookie("age");
+  res.send("COOKIE DELETED");
+});
 module.exports = router;
