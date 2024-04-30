@@ -16,8 +16,11 @@ router.get("/createUser", async (req, res) => {
   res.send(userCreated);
 });
 router.get("/user", async (req, res) => {
-  var regex = new RegExp("^MuhaMMAd", "i");
-  const allUsers = await userModel.find({ name: regex });
+  var date1 = new Date("2024-04-20");
+  var date2 = new Date("2024-04-31");
+  const allUsers = await userModel.find({
+    dateCreated: { $exists: true },
+  });
   res.send(allUsers);
 });
 module.exports = router;
