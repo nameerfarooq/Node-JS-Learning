@@ -1,19 +1,12 @@
 const mongoose = require("mongoose");
-
+const plm = require("passport-local-mongoose");
 mongoose.connect("mongodb://127.0.0.1:27017/endgame2");
 
 const userSchema = mongoose.Schema({
-  name: String,
-  nickName: String,
-  description: String,
-  categories: {
-    type: Array,
-    default: [],
-  },
-  dateCreated: {
-    type: Date,
-    default: Date.now(),
-  },
+  username: String,
+  password: String,
+  secret: String,
 });
 
+userSchema.plugin(plm);
 module.exports = mongoose.model("user", userSchema);
